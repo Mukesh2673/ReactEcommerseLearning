@@ -21,19 +21,22 @@ const checkToken = require('./Middlewar/auth');
 router.post('/test', (req, res) => {
     var userInput = req.body.userInput;
     let userDetails = req.body.userdetails;
-
+ 
     let t = db.insertquiz(userInput, userDetails, req, res);
 
 });
 router.get('/userdetails', checkToken, async(req, res) => {
-    console.log('hid');
     let t = await db.userdetails(req, res);
-    console.log(t[0]);
+  
+    res.send(t);
 
 });
-router.post('/userAnswerdetails', (req, res) => {
+
+router.post('/userAnswerdetails', checkToken, async(req, res) => {
     let t = req.body;
-    let k = db.userAnswerdetails(t, req, res);
+    let k = await db.userAnswerdetails(t, req, res);
+ 
+
 });
 //getquestions and answers
 router.get('/quizdetails', checkToken, (req, res) => {
@@ -48,6 +51,27 @@ router.post('/register', (req, res) => {
 
 })
 
+//loggedinUser
+router.get('/loggedin',checkToken,async(req,res)=>{
+    var t=req.user;
+    let k=await db.loggeduserdetails(req, res, t);
+    res.send(k.Username);
+
+});
+//authorised teacher user
+
+
+router.get('/teacherauth',checkToken,async(req,res)=>{
+    var t=req.user;
+    let k=await db.loggeduserdetails(req, res, t);
+    res.send(k.Profile);
+
+});
+
+
+
+
+
 
 
 
@@ -61,7 +85,7 @@ router.post('/login', async (req, res) => {
     let user = await db.userLogin(req, res, userlogin);
 
     //jwt authentication
-    if (user) {
+    if (user){
         let password = user.password
         let password1 = userlogin.password;
 
@@ -95,7 +119,18 @@ router.post('/login', async (req, res) => {
         );
     }
 })
+//publish result
+router.post('/publish',async(req, res) => {
+t=req.body.a;
+let k=await db.insertresult(req, res, t);
 
+
+
+
+});
+
+
+//logout  
 router.post('/logout', async (req, res) => {
 
     res.clearCookie("token");

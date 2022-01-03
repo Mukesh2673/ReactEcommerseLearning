@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 //schema for user attempt question and answer
 var quiz=new mongoose.Schema({
-    Username:{type:String,unique:true},
+    Username:{type:String},
     Answers:{type:Array }
     
 })

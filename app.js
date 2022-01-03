@@ -6,7 +6,7 @@ var app=express()
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 app.use(bodyParser.json())
-app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 const port=1100
 var question=require('./attemptedquestion')
 app.get('/', (req, res) => {

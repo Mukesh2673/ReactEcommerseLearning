@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom'
 export default class Login extends Component {
     render() {
         return (
-            <div style={{"display":"flex","justifyContent":"center","margin-top":"140px"}} >
+            <div style={{"display":"flex","justifyContent":"center","marginTop":"140px"}} >
             <div className="card" style={{"width": "24rem"}}>
-            <div className="card-body">  <form>
+            <div className="card-body"><form>
                 <h3>Sign In</h3>
 
                 <div className="form-group">

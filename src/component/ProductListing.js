@@ -8,23 +8,23 @@ const products=useSelector((state)=>state);
 const dispatch=useDispatch();
 const fetchProducts=async ()=>{
 const response=await axios
-.get("https://jsonplaceholder.typicode.com/photos?_limit=5")
+.get("https://fakestoreapi.com/products")
 .catch((err)=>{
     console.log("Err",err);
 });
-
 dispatch(setProducts(response.data));
-
 };
 useEffect(()=>{
     fetchProducts();
 },[]);
 
-//console.log("products:",products);
 
 return(
-        <div className='ui grid container'>
-        <h1><ProductComponent /></h1>
+    <div class="container">
+                    <div className="row bg-primary">
+                    <ProductComponent/>
+                    </div>
+     
             
         </div>
     );

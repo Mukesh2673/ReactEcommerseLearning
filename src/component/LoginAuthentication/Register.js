@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import axios from 'axios' 
 
-axios.defaults.withCredentials = true;
+
 function Register()
 {
     const navigate = useNavigate();

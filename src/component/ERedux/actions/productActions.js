@@ -19,3 +19,16 @@ export const removeSelectedProduct=()=>{
     
     };
 };
+export const addtocart=(products)=>{
+    return{
+        type:ActionTypes.ADD_TO_CART,
+        payload:products
+    };
+};
+
+export const removetocart=(products)=>{
+    return{
+        type:ActionTypes.REMOVE_TO_CART,
+        payload:products
+    };
+};

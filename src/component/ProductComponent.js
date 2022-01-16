@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom"
 const ProductComponent = () => {
     const products = useSelector((state) => state.allProducts.products);
-    const renderList = products.map((product) => {
-        console.log(product);
+    
+    const renderList = products.map((product,index) => {
         const { id, title, image, price, description } = product;
         return (
 
@@ -12,17 +12,14 @@ const ProductComponent = () => {
            
 
              
-                    <div className="col-md-4">
-                        {id}
+                    <div className="col-md-4" key={index}>
+                   
                         <Link to={`/product/${id}`}>
 
-                            <div className="card mt-3" style={{ width: '18rem' }}>
+                            <div className="card mt-1" style={{ width: '18rem' }}>
                                 <img className="card-img-top" src={image} alt={title} />
                                 <div className="card-body">
-                                    <p className="card-title">{title}</p>
-                                    <h5 className="card-title">{price}$</h5>
-                                    <a href="#" class="btn btn-primary">Shop Now</a>
-                                </div>
+                              </div>
                             </div>
 
                         </Link>

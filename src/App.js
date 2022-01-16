@@ -11,10 +11,12 @@ import Images from './component/images'
 import Counter from './component/counter';
 import Predux  from './component/predux';
 import ProductDetail from './component/productdetails';
+import CartProductdetails from './component/CartProductdetails';
 function App() {
   return (
   <Provider store={store}>  
   <Routes>
+    <Route path="/cart" element={<CartProductdetails/>}/>
    <Route path="/login" element={<Login/>}/>
    <Route path="/register" element={<Register/>}/>
    <Route path="/img" element={<Images/>}/>

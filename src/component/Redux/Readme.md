@@ -1,0 +1,1 @@
+to combine redux with react we use Provider

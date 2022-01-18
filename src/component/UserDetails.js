@@ -15,10 +15,10 @@ export default function UserDetails() {
     <div className="col-xs-12 col-md-12">
       <form className="form-horizontal" role="form">
 
-        <h2 class="text-center" >Address</h2>
+        <h2 className="text-center" >Address</h2>
 
         <div className="form-group">
-          <label for="inputFullName" className="col-sm-2 control-label">Full Name</label>
+          <label htmlFor="inputFullName" className="col-sm-2 control-label">Full Name</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputFullName" name="full-name" placeholder="Full Name"/>
           </div>
@@ -26,7 +26,7 @@ export default function UserDetails() {
 
         <div className="form-group">
           <p className="col-sm-offset-2 col-sm-10 help-block">Street address, P.O. box, company name, c/o</p>
-          <label for="inputAddressLine1" className="col-sm-2 control-label">Address Line 1</label>
+          <label htmlFor="inputAddressLine1" className="col-sm-2 control-label">Address Line 1</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputAddressLine1" name="address-line1" placeholder="Address Line 1"/>
           </div>
@@ -34,38 +34,39 @@ export default function UserDetails() {
 
         <div className="form-group">
           <p className="col-sm-offset-2 col-sm-10 help-block">Apartment, suite , unit, building, floor, etc.</p>
-          <label for="inputAddressLine2" className="col-sm-2 control-label">Address Line 2</label>
+          <label htmlFor="inputAddressLine2" className="col-sm-2 control-label">Address Line 2</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputAddressLine2" name="address-line2" placeholder="Address Line 2"/>
           </div>
         </div>
 
         <div className="form-group">
-          <label for="inputCityTown" className="col-sm-2 control-label">City / Town</label>
+          <label htmlFor="inputCityTown" className="col-sm-2 control-label">City / Town</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputCityTown" name="city-town" placeholder="City / Town"/>
           </div>
         </div>
 
         <div className="form-group">
-          <label for="inputStateProvinceRegion" class="col-sm-2 control-label">State / Province / Region</label>
+          <label htmlFor="inputStateProvinceRegion" className="col-sm-2 control-label">State / Province / Region</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputStateProvinceRegion" className="state-province-region" placeholder="State / Province / Region"/>
           </div>
         </div>
 
         <div className="form-group">
-          <label for="inputZipPostalCode" className="col-sm-2 control-label">Zip / Postal Code</label>
+          <label htmlFor="inputZipPostalCode" className="col-sm-2 control-label">Zip / Postal Code</label>
           <div className="col-sm-10">
             <input type="text" className="form-control" id="inputZipPostalCode" name="zip-postal-code" placeholder="Zip / Postal Code"/>
           </div>
         </div>
 
         <div className="form-group">
-          <label for="selectCountry" className="col-sm-2 control-label">Country</label>
+          <label htmlFor="selectCountry" className="col-sm-2 control-label">Country</label>
           <div className="col-sm-10">
-            <select className="form-control" id="selectCountry" name="country">
-              <option value="" selected="selected">(please select a country)</option>
+            <select className="form-control" id="selectCountry" 
+            defaultValue={"India"} name="country">
+              <option >(please select a country)</option>
               <option value="AF">India</option>
               <option value="AL">Pakistan</option>
               <option value="DZ">Nepal</option>

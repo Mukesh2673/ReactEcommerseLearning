@@ -5,10 +5,43 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { addtocart, removeSelectedProduct, selectedProduct } from './ERedux/actions/productActions';
 import Header from './Header'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+
+toast.configure()
+
 //import images from '../../public/images/'
 
 const ProductDetail = () => {
+  let navigate = useNavigate();
+  const cartitems=useSelector((state)=>state.Cart.cartitem);
+  const notify=()=>{
+    if(cartitems>0){
+     
+        navigate('/userdetails');
+      
+
+      console.log('cartis full')
+      }
+    else{
+      toast.success('Please Add item to Cart', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme:'colored'
+        });
+    }
+  }
+
+
+
+
   const product = useSelector((state) => state.product);
+  const cartitem =useSelector((state)=>state.Cart.cartitem);
 
   if (product) {
 
@@ -37,11 +70,12 @@ const ProductDetail = () => {
     dispatch(selectedProduct(response.data));
   };
   useEffect(() => {
-    if (productId && productId !== "") fetchProductDetail();
+
+    if (productId && productId !== ""){fetchProductDetail();return};
     return () => {
       dispatch(removeSelectedProduct());
     };
-  }, [productId]);
+  }, []);
   return (
     <div className="container">
       <div className="row bg-primary" style={{position:'relative',display:'flex',justifyContent:'right'}}>
@@ -78,13 +112,19 @@ const ProductDetail = () => {
       </div>
       <div className="row mt-1">
         <div className="col-12" style={{display:'flex',justifyContent:'right'}}> 
-        <Link to={'/userdetails'}>
+       {/*  <Link to={'/userdetails'}>
       <button type="button" className="btn btn-warning  text-dark" style={{width:'220px',borderRadius:'20px',
       fontWeight: 'bold' 
     
     
     }}>PlaceOrder</button>
-    </Link>
+    </Link> */}
+ <button type="button" className="btn btn-warning  text-dark" style={{width:'220px',borderRadius:'20px',
+      fontWeight: 'bold' 
+    
+    
+    }}  onClick={notify}>PlaceOrder</button>
+
       </div>
     </div>
   </div>

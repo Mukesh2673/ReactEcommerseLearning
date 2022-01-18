@@ -17,6 +17,9 @@ const CartProductdetails = () => {
           
       const test=useSelector((state)=>state.Cart.cartitem);
       const test2=useSelector((state)=>state.Cart.cartproducts);
+      
+      localStorage.setItem('cartproducts', JSON.stringify(test2));
+      
       const [data, setData] = useState(test2)
     
 

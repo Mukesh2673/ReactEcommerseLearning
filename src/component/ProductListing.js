@@ -4,6 +4,7 @@ import {useDispatch } from 'react-redux';
 import {setProducts,addtocart} from '../component/ERedux/actions/productActions'
 import ProductComponent from './ProductComponent';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const ProductListing=()=>{
 
@@ -25,6 +26,14 @@ dispatch(setProducts(response.data));
 useEffect(()=>{
     fetchProducts();
 },[]);
+const [Searchitem,setSearchitem]=useState('');
+
+const products = useSelector((state) => state.allProducts.products);
+const getSearchddata=(t)=>{
+    //console.log(products);
+    const c=products.filter((e)=>e.title.toLowerCase().includes(Searchitem.toLowerCase()));
+    dispatch(setProducts(c));
+}
 
 
 
@@ -33,15 +42,18 @@ return(
                     <div className="row bg-primary">
 <nav className="navbar navbar-light bg-primary justify-content-between">
     <div className="form-inline">
-    <input className="form-control mr-sm-2" type="search" placeholder="Search...." aria-label="Search" />
-    <button className="btn btn-outline-warning my-2 my-sm-0 bg-dark" type="submit">Search</button>
+    <input className="form-control mr-sm-2" type="search" placeholder="Search...." aria-label="Search"  onChange={(e) => setSearchitem(e.target.value)}/>
+    <button className="btn btn-outline-warning my-2 my-sm-0" type="submit"  onClick={()=>getSearchddata('t')}>Search</button>
+  
+  
+  
   </div>
 </nav>
 </div>
 <div className="row">
 
                         
-                   {(date.length>0 ? <ProductComponent/>:<h1>loading....</h1>)}
+                   {(date.length>0 ? <ProductComponent search={Searchitem}/>:<h1>loading....</h1>)}
                     </div>
      
             

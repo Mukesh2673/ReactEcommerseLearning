@@ -5,9 +5,9 @@ const initialState = {
     products: [],
 };
 const initialCart = {
-    cartproducts: [],
-    cartitem: 0
-
+    cartproducts:JSON.parse(localStorage.getItem('cartproducts'))||[],
+    cartitem: parseInt(localStorage.getItem('cartitem'))||0
+ 
 }
 export const productReducer = (state = initialState, {
     type,
@@ -67,8 +67,13 @@ export const Cartfeature = (state = initialCart, {
 
             };
         case ActionTypes.REMOVE_TO_CART:
-            let newCartItem = state.cartitem - 1
+            let itemnumber=state.cartproducts[payload].counter;
+            let newCartItem = state.cartitem - itemnumber
             state.cartproducts.splice(payload,1);
+            if(state.cartproducts.length<1)
+            {
+                newCartItem=state.cartitem*0
+            }
     
 
 

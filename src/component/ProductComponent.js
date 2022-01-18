@@ -5,7 +5,7 @@ const ProductComponent = () => {
     const products = useSelector((state) => state.allProducts.products);
     
     const renderList = products.map((product,index) => {
-        const { id, title, image, price, description } = product;
+        const { id, title, image } = product;
         return (
 
            

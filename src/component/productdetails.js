@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import {BsFillCartCheckFill } from 'react-icons/bs';
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { addtocart, removeSelectedProduct, selectedProduct } from './ERedux/actions/productActions';
-import { Addtocart } from './ERedux/reducers/productReducer';
+import Header from './Header'
+//import images from '../../public/images/'
 
 const ProductDetail = () => {
   const product = useSelector((state) => state.product);
 
   if (product) {
 
-    var { id, title, image, price, description,category } = product;
+    var { title, image, price, description,category } = product;
   }
-  const test=useSelector((state)=>state.addtocart.cartitem);
-  const test2=useSelector((state)=>state.addtocart);
+  const test=useSelector((state)=>state.Cart.cartitem);
+  //const test2=useSelector((state)=>state.addtocart);
 
-  console.log(test2);
+  
   const addtocart1=(t)=>{
-    console.log('ok');
+   
     dispatch(addtocart(t));
   }
 
@@ -28,7 +28,7 @@ const ProductDetail = () => {
 
   const fetchProductDetail = async () => {
     const response = await axios
-      .get(`https://fakestoreapi.com/products/${productId}`)
+      .get(`http://localhost:3000/data/${productId}`)
       .catch((err) => {
         console.log("Err", err);
       });
@@ -45,10 +45,7 @@ const ProductDetail = () => {
   return (
     <div className="container">
       <div className="row bg-primary" style={{position:'relative',display:'flex',justifyContent:'right'}}>
-      <Link to={'/cart'}>
-              <BsFillCartCheckFill style={{color: 'yellow', fontSize: '60px',marginLeft: 'auto', marginRight: 0}}/>
-              <span style={{color: 'black',fontSize:'28px', position:'absolute',marginLeft:'-25px'}}>{test}</span>
-        </Link>      
+             <Header/>
               </div>
       
       <div className='row mt-5'>
@@ -79,7 +76,18 @@ const ProductDetail = () => {
       </div>
 
       </div>
+      <div className="row mt-1">
+        <div className="col-12" style={{display:'flex',justifyContent:'right'}}> 
+        <Link to={'/userdetails'}>
+      <button type="button" className="btn btn-warning  text-dark" style={{width:'220px',borderRadius:'20px',
+      fontWeight: 'bold' 
+    
+    
+    }}>PlaceOrder</button>
+    </Link>
       </div>
+    </div>
+  </div>
 
 
 

@@ -12,6 +12,7 @@ import Counter from './component/counter';
 import Predux  from './component/predux';
 import ProductDetail from './component/productdetails';
 import CartProductdetails from './component/CartProductdetails';
+import UserDetails from './component/UserDetails';
 function App() {
   return (
   <Provider store={store}>  
@@ -23,6 +24,7 @@ function App() {
    <Route path="/counter" element={<Counter/>}/>
    <Route path="/predux" element={<Predux/>}/>
    <Route path="/product/:productId" element={<ProductDetail/>}/>
+   <Route path="/userdetails" element={<UserDetails/>}/>
   </Routes>
   </Provider>
    );

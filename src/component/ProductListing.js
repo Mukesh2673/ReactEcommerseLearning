@@ -13,7 +13,7 @@ const dispatch=useDispatch();
 const fetchProducts=async ()=>{
 
 const response=await axios
-.get("https://fakestoreapi.com/products")
+.get("http://localhost:3000/data")
 .catch((err)=>{
     console.log("Err",err);
 });

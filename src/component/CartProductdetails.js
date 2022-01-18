@@ -6,20 +6,24 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { addtocart, removeSelectedProduct, selectedProduct } from './ERedux/actions/productActions';
 import { Addtocart } from './ERedux/reducers/productReducer';
+import Header from './Header'
+import { removetocart} from './ERedux/actions/productActions';
 
 const CartProductdetails = () => {
    
     const dispatch = useDispatch();
       const product = useSelector((state) => state.product);
+
           
-      const test=useSelector((state)=>state.addtocart.cartitem);
-      const test2=useSelector((state)=>state.addtocart.cartproducts);
+      const test=useSelector((state)=>state.Cart.cartitem);
+      const test2=useSelector((state)=>state.Cart.cartproducts);
       const [data, setData] = useState(test2)
-        //var { id, title, image, price, description,category } = product;
-        //{test2.map((d)=>console.log('render',d))}
-        console.log('value',Object.values(test2));    
-      console.log('test2',test2);
     
+
+const removecart=(t)=>{
+dispatch(removetocart(t));
+}
+
      
     
     
@@ -28,36 +32,17 @@ const CartProductdetails = () => {
         
         
 
-        <>           
-        <thead key={index}>
+  
+            <tbody key={index}>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <td scope="row"><img className="img-thumbnail" src={card.image} style={{ width: '5rem' }} /></td>
+                <td>{card.counter}</td>
+                <td>{card.price}</td>
+                <td>{card.title}</td>
+                <td><button type="button" className="btn btn-danger" onClick={()=>removecart(index)}>Remove</button></td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>{card.id}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
+            
             </tbody>
-            </>
  
     
      
@@ -69,16 +54,40 @@ const CartProductdetails = () => {
 
 
     return (<div className="App">
+      <Header/>
         <div className="container">
             <div className="row mt-5">
           <table className="table">
-          {data.map(renderCard)}
+          <thead >
+                <tr>
+                <th scope="col">Products</th>
+                <th scope="col">item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+          {data?.map(renderCard)}
 
           </table>
            
             </div>
             
           </div>
+          <div className="row mt-1">
+        <div className="col-11" style={{display:'flex',justifyContent:'right'}}> 
+           <Link to={'/userdetails'}>
+      <button type="button" className="btn btn-warning  text-dark" style={{width:'220px',borderRadius:'20px',
+      fontWeight: 'bold' 
+    
+    
+    }}>PlaceOrder</button>
+    </Link>
+      </div>
+    </div>
+  
+
+
           </div>  
     
       )}

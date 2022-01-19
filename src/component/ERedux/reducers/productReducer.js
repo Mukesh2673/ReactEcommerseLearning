@@ -5,8 +5,8 @@ const initialState = {
     products: [],
 };
 const initialCart = {
-    cartproducts:JSON.parse(localStorage.getItem('cartproducts'))||[],
-    cartitem: parseInt(localStorage.getItem('cartitem'))||0
+    cartproducts: parseInt(localStorage.getItem('cartitem'))<=1 ?  JSON.parse(localStorage.getItem('cartproducts')) :[],
+    cartitem: JSON.parse(localStorage.getItem('cartproducts'))?.length>=1 && parseInt(localStorage.getItem('cartitem')) ? parseInt(localStorage.getItem('cartitem')) : 0
  
 }
 export const productReducer = (state = initialState, {

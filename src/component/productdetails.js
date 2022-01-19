@@ -52,7 +52,6 @@ const ProductDetail = () => {
 
   
   const addtocart1=(t)=>{
-   
     dispatch(addtocart(t));
   }
 

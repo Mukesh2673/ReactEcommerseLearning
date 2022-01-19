@@ -25,7 +25,7 @@ function App() {
    <Route path="/predux" element={<Predux/>}/>
    <Route path="/product/:productId" element={<ProductDetail/>}/>
    <Route path="/userdetails" element={<UserDetails/>}/>
-   <Route path="/Emptybasketpage" element={<Emptybasketpage />}/>
+   <Route path="/basket" element={<Emptybasketpage />}/>
   </Routes>
   </Provider>
    );

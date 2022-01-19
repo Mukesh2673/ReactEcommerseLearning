@@ -1,11 +1,8 @@
-import React, { useEffectimport , useState  } from 'react'
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import {BsFillCartCheckFill } from 'react-icons/bs';
+import React, { useState  } from 'react'
+
+
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import { addtocart, removeSelectedProduct, selectedProduct } from './ERedux/actions/productActions';
-import { Addtocart } from './ERedux/reducers/productReducer';
 import Header from './Header'
 import { removetocart} from './ERedux/actions/productActions';
 
@@ -18,7 +15,7 @@ const CartProductdetails = () => {
       const test=useSelector((state)=>state.Cart.cartitem);
       const test2=useSelector((state)=>state.Cart.cartproducts);
       
-      localStorage.setItem('cartproducts', JSON.stringify(test2));
+  
       
       const [data, setData] = useState(test2)
     

@@ -11,8 +11,10 @@ const ProductListing=()=>{
 
 
 
-const [date, setDate] = useState('')
+const [date, setDate] = useState([])
 const dispatch=useDispatch();
+const [dataPerPage,setdataPerPage]=useState(4)
+const [pageSerial,setPageSerial]=useState(0)
 const fetchProducts=async ()=>{
 
 const response=await axios
@@ -20,22 +22,20 @@ const response=await axios
 .catch((err)=>{
     console.log("Err",err);
 });
-
 setDate(response.data);
-
-//dispatch(setProducts(response.data));
-
-
-let b=response.data.slice(pageNumber,4).map((t)=>t)
-console.log('sliced',b);
+let b=response.data.slice(0,dataPerPage).map((t)=>t)
+let totaldata=response.data.length
+let c=Math.ceil(totaldata/dataPerPage)
+setPageSerial(c)
 dispatch(setProducts(b));   
-console.log(pageNumber);
-
-
 };
+
 useEffect(()=>{
     fetchProducts();
 },[]);
+
+
+
 const [Searchitem,setSearchitem]=useState('');
 
 const products = useSelector((state) => state.allProducts.products);
@@ -46,35 +46,28 @@ const getSearchddata=(t)=>{
 
 
 /*----------------------------- pagination Code -------------------------------*/
-const [pageNumber,setPageNumber]=useState(0)
-const dataPerPage=6
-const pagesVisited=pageNumber * dataPerPage
-//const pageCount=Math.ceil(users.length / dataPerPage);
-const changePage=({selected}) =>{
-    //setPageNumber(selected)
+const [pageNumber,setPageNumber]=useState(1)
+
+const changePage=({selected})=>{
     
-    console.log('select',selected)
-    console.log('selected',selected+1)
-    setPageNumber(selected+1)
    
 
-    console.log('pagenumber',pageNumber);
-    console.log('pagesvisited',pagesVisited);
-
-
-    let b=date.slice(pagesVisited,pagesVisited+dataPerPage).map((t)=>t)
-    console.log('sliced',b);
+    const pagenumber=selected+1;
+    setPageNumber(pagenumber);
+    const pageVisited=pagenumber * dataPerPage-dataPerPage
+    const newpageVisited=pagenumber * dataPerPage;
+    let b=date.slice(pageVisited,newpageVisited).map((t)=>t)
     dispatch(setProducts(b));
-    //console.log('arun',b);
-  
-};
+}
+
+
 
 //https://jsonplaceholder.typicode.com/users?_page=${page}&_limit=3  set limit to page
 
 
 
 
-/*----------------------------- pagination Code -------------------------------*/
+/*----------------------------- End pagination Code -------------------------------*/
 
 
 return(
@@ -93,7 +86,7 @@ return(
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
-              pageCount={4}
+              pageCount={pageSerial}
               containerClassName={'paginationBttns'}
               previousLinkClassName={'previousBttn'}
               nextLinkClassName={'nextBttn'}

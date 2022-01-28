@@ -95,10 +95,7 @@ return(
               onPageChange={changePage}
             />
 </div>
-
-
-
-        );}
+ );}
 
 
 

@@ -14,6 +14,7 @@ import ProductDetail from './component/productdetails';
 import CartProductdetails from './component/CartProductdetails';
 import UserDetails from './component/UserDetails';
 import Emptybasketpage from './component/Emptybasketpage';
+import UploadProduct from './component/Admin/uploadProduct';
 function App() {
   return (
   <Provider store={store}>  
@@ -26,6 +27,7 @@ function App() {
    <Route path="/product/:productId" element={<ProductDetail/>}/>
    <Route path="/userdetails" element={<UserDetails/>}/>
    <Route path="/basket" element={<Emptybasketpage />}/>
+   <Route path="/admin" element={<UploadProduct/>}/>
   </Routes>
   </Provider>
    );
